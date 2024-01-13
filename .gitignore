@@ -1,6 +1,7 @@
 node_modules
 
 /.cache
+.eslintcache
 /build
 /public/build
 .env
