@@ -48,7 +48,7 @@
     "node": ">=18.0.0"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --cache",
+    "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
     "*.{js,jsx,ts,tsx,css,scss,md}": "prettier --ignore-unknown"
   }
 }
