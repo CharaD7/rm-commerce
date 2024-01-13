@@ -8,7 +8,7 @@
     "dev": "remix dev --manual",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "lint:prettier": "prettier --check '**/*' --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint --ignore-unknown",
-    "prettier:fix": "prettier lint:prettier --write .",
+    "prettier:fix": "prettier --check '**/*' --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint --ignore-unknown --write",
     "prepare": "husky install",
     "elint": "eslint --ext .tsx,.ts ./app",
     "elint:fix": "yarn lint -- --fix",
@@ -46,7 +46,7 @@
     "node": ">=18.0.0"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
-    "*.{js,jsx,ts,tsx,css,scss,md}": "prettier --write --ignore-unknown"
+    "*.{js,jsx,ts,tsx}": "eslint --cache",
+    "*.{js,jsx,ts,tsx,css,scss,md}": "prettier --ignore-unknown"
   }
 }
