@@ -11,18 +11,23 @@
     "prettier:fix": "prettier --check '**/*' --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint --ignore-unknown --write",
     "prepare": "husky install",
     "elint": "eslint --ext .tsx,.ts ./app",
-    "elint:fix": "yarn lint -- --fix",
+    "elint:fix": "npm run lint --fix",
     "start": "remix-serve ./build/index.js",
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.18",
     "@remix-run/css-bundle": "^2.4.1",
     "@remix-run/node": "^2.4.1",
     "@remix-run/react": "^2.4.1",
     "@remix-run/serve": "^2.4.1",
+    "@sanity/client": "^6.11.1",
+    "@sanity/image-url": "^1.0.2",
     "isbot": "^3.6.8",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "stripe": "^14.12.0",
+    "zustand": "^4.4.7"
   },
   "devDependencies": {
     "@remix-run/dev": "^2.4.1",
@@ -49,7 +54,7 @@
     "node": ">=18.0.0"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
-    "*.{js,jsx,ts,tsx,css,scss,md}": "prettier --ignore-unknown"
+    "*.{js,jsx,ts,tsx}": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint . --fix",
+    "*.{js,jsx,ts,tsx,css,scss,md}": "prettier --check '**/*' --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint --ignore-unknown --write"
   }
 }
