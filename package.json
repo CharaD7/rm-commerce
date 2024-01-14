@@ -54,7 +54,7 @@
     "node": ">=18.0.0"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint . --fix",
-    "*.{js,jsx,ts,tsx,css,scss,md}": "prettier --check '**/*' --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint --ignore-unknown --write"
+    "*.{js,jsx,ts,tsx}": "npm run elint:fix",
+    "*.{js,jsx,ts,tsx,css,scss,md}": "npm run prettier:fix"
   }
 }
