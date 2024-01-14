@@ -22,6 +22,11 @@ export default {
       },
     },
     {
+      name: 'description',
+      type: 'text',
+      title: 'Description',
+    },
+    {
       name: 'stripeProductId',
       type: 'string',
       title: 'Stripe Product Id',
