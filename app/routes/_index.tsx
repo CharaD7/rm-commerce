@@ -8,6 +8,10 @@ export const meta: MetaFunction = () => {
   ];
 };
 
+export async function loader() {
+  return {};
+}
+
 export default function Index() {
   return (
     <>
@@ -24,14 +28,29 @@ export default function Index() {
             tech! Step into a world of innovation and discovery as we bring you
             the latest and greatest gadgets, electronics, and accessories.
           </p>
+          <div>
+            <Link
+              to="#products"
+              className="rounded-lg bg-cyan-600 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-cyan-300 duration-100 transition-colors hover:bg-cyan-700 focus:ring md:text-base"
+            >
+              Shop Now
+            </Link>
+          </div>
         </div>
-        <div>
-          <Link
-            to="#products"
-            className="rounded-lg bg-cyan-600 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-cyan-300 duration-100 transition-colors hover:bg-cyan-700 focus:ring md:text-base"
-          >
-            Shop Now
-          </Link>
+        <div className="h-48 overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:h-auto xl:w-5/12">
+          <img
+            src="https://images.unsplash.com/photo-1523206489230-c012c64b2b48?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Product Highlight"
+            className="h-full w-full object-cover object-center"
+          />
+        </div>
+      </section>
+
+      <section id="products">
+        <div className="py-24 sm:py-32 lg:pt-32">
+          <div className="mt-6 grid gri-col-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
+            Something goes here
+          </div>
         </div>
       </section>
     </>
