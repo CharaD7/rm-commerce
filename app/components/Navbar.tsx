@@ -12,14 +12,13 @@ const Navbar = () => {
                 <div className="flex items-center">
                   <Link to="/">
                     <h1 className="text-2xl font-semibold">
-                      Tech<span className="text-indigo-600">Connect</span>
+                      Tech<span className="text-cyan-600">Connect</span>
                     </h1>
                   </Link>
                 </div>
               </div>
             </div>
           </div>
-          Navbar
         </div>
       </header>
     </>
