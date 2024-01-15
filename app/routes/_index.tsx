@@ -25,6 +25,14 @@ export default function Index() {
             the latest and greatest gadgets, electronics, and accessories.
           </p>
         </div>
+        <div>
+          <Link
+            to="#products"
+            className="rounded-lg bg-cyan-600 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-cyan-300 duration-100 transition-colors hover:bg-cyan-700 focus:ring md:text-base"
+          >
+            Shop Now
+          </Link>
+        </div>
       </section>
     </>
   );
