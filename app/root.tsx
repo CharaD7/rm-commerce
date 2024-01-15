@@ -10,6 +10,8 @@ import {
 
 import stylesheet from "~/tailwind.css";
 
+import Navbar from "./components/Navbar";
+
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
 ];
@@ -30,5 +32,14 @@ export default function App() {
         <LiveReload />
       </body>
     </html>
+  );
+}
+
+function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      <Navbar />
+      <main>{children}</main>
+    </>
   );
 }
