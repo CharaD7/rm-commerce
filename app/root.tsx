@@ -11,6 +11,7 @@ import {
 import stylesheet from "~/tailwind.css";
 
 import Navbar from "./components/Navbar";
+import ShoppingCartModal from "./components/ShoppingCartModal";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
@@ -42,6 +43,7 @@ function Layout({ children }: { children: React.ReactNode }) {
     <>
       <Navbar />
       <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">{children}</main>
+      <ShoppingCartModal />
     </>
   );
 }
