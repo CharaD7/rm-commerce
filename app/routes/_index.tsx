@@ -1,5 +1,7 @@
-import type { MetaFunction } from "@remix-run/node";
-import { Link } from "@remix-run/react";
+import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
+import { Link, json, useLoaderData } from "@remix-run/react";
+
+import { client } from "~/lib/sanity";
 
 export const meta: MetaFunction = () => {
   return [
@@ -8,11 +10,23 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export async function loader() {
-  return {};
+// eslint-disable-next-line no-empty-pattern
+export async function loader({}: LoaderFunctionArgs) {
+  const query = `*[_type == "product"]{
+    price,
+    name,
+    slug,
+    "imageUrl": image[0].asset->url
+  }`;
+
+  const products = await client.fetch(query);
+
+  return json({ products });
 }
 
 export default function Index() {
+  const { products } = useLoaderData<typeof loader>();
+
   return (
     <>
       <section className="flex flex-col justify-between gap-6 sm:gap-16 lg:flex-row mt-12">
