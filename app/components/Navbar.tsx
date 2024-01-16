@@ -1,7 +1,12 @@
 import { Link } from "@remix-run/react";
 import React from "react";
 
+import { useCartState } from "~/lib/useCart";
+
 const Navbar = () => {
+  const toggleCart = useCartState((state) => state.toggleShowCart);
+  const totalItems = useCartState((state) => state.totalItems);
+
   return (
     <>
       <header className="relative z-10">
@@ -17,7 +22,7 @@ const Navbar = () => {
                   </Link>
                 </div>
                 <button
-                  onClick={() => ({})}
+                  onClick={toggleCart}
                   className="group -m-2 p-2 flex items-center"
                 >
                   <svg
@@ -35,7 +40,7 @@ const Navbar = () => {
                     />
                   </svg>
                   <span className="ml-2 text-sm font-medium text-white bg-red-500 px-3 py-1 rounded-full">
-                    0
+                    {totalItems}
                   </span>
                 </button>
               </div>
