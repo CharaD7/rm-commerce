@@ -73,6 +73,34 @@ const ProductSlug = () => {
             ))}
           </Tab.Panels>
         </Tab.Group>
+
+        <div className="mt-10 px-4 sm:px0 sm:mt-16 lg:mt-0">
+          <h1 className="text-3xl font-extrabold tracking-light text-gray-900">
+            {data.name}
+          </h1>
+          <div className="mt-3">
+            <p className="text-3xl text-gray-900">${data.price}</p>
+          </div>
+
+          <div className="mt-6">
+            <div
+              className="text-base text-gray-700"
+              // Use the below if description is created by yourself
+              dangerouslySetInnerHTML={{ __html: data.description }}
+            ></div>
+          </div>
+
+          <div className="mt-6">
+            <div className="mt-10 flex sm:flex-col-1">
+              <button
+                onClick={() => {}}
+                className="w-full flex-1 bg-cyan-600 border border-transparent rounded-md py-3 flex items-center justify-center text-base font-medium text-white hover:bg-cyan-500"
+              >
+                Add To Bag
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   );
