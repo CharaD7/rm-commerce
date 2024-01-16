@@ -70,7 +70,7 @@ export default function Index() {
           <div className="mt-6 grid gri-col-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
             {products.map((product) => (
               <Link
-                to={`/product/$product.slug.current`}
+                to={`/product/${product.slug.current}`}
                 key={product.name}
                 className="group relative"
               >
