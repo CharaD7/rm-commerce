@@ -5,6 +5,7 @@ import React from "react";
 
 import { ProductId } from "~/lib/interface";
 import { client } from "~/lib/sanity";
+import { urlFor } from "~/lib/sanityImageUrl";
 
 interface iAppProps {
   data: ProductId;
@@ -16,6 +17,11 @@ export async function loader({ params }: LoaderFunctionArgs) {
   const data = await client.fetch(query);
 
   return json({ data });
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function classNames(...classes: any) {
+  return classes.filter(Boolean).join(" ");
 }
 
 const ProductSlug = () => {
@@ -37,17 +43,35 @@ const ProductSlug = () => {
                     <>
                       <span className="absolute inset-0 rounded-md overflow-hidden">
                         <img
-                          src=""
+                          src={urlFor(image).url()}
                           alt="Product Preview"
                           className="w-full h-full object-center object-cover"
                         />
                       </span>
+                      <span
+                        className={classNames(
+                          selected ? "ring-cyan-500" : "ring-transparent",
+                          "absolute inset-0 rounded-md ring-2 ring-offset-2 pointer-events-none",
+                        )}
+                      ></span>
                     </>
                   )}
                 </Tab>
               ))}
             </Tab.List>
           </div>
+
+          <Tab.Panels className="w-full aspect-w-1 aspect-h-1">
+            {data.image.map((image) => (
+              <Tab.Panel key={image._key}>
+                <img
+                  src={urlFor(image).url()}
+                  alt="Product Preview"
+                  className="w-full h-full object-center object-cover sm:rounded-lg"
+                />
+              </Tab.Panel>
+            ))}
+          </Tab.Panels>
         </Tab.Group>
       </div>
     </main>
