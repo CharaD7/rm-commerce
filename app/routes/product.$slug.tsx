@@ -6,6 +6,7 @@ import React from "react";
 import { ProductId } from "~/lib/interface";
 import { client } from "~/lib/sanity";
 import { urlFor } from "~/lib/sanityImageUrl";
+import { useCartState } from "~/lib/useCart";
 
 interface iAppProps {
   data: ProductId;
@@ -26,6 +27,7 @@ function classNames(...classes: any) {
 
 const ProductSlug = () => {
   const { data } = useLoaderData<typeof loader>() as iAppProps;
+  const addToCart = useCartState((state) => state.addToCart);
 
   return (
     <main className="mt-5">
@@ -93,7 +95,7 @@ const ProductSlug = () => {
           <div className="mt-6">
             <div className="mt-10 flex sm:flex-col-1">
               <button
-                onClick={() => {}}
+                onClick={() => addToCart(data)}
                 className="w-full flex-1 bg-cyan-600 border border-transparent rounded-md py-3 flex items-center justify-center text-base font-medium text-white hover:bg-cyan-500"
               >
                 Add To Bag
