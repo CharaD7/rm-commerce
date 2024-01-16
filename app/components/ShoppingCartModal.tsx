@@ -1,5 +1,5 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Link } from "@remix-run/react";
+import { Form, Link } from "@remix-run/react";
 import React, { Fragment } from "react";
 
 import { urlFor } from "~/lib/sanityImageUrl";
@@ -130,6 +130,35 @@ const ShoppingCartModal = () => {
                         </div>
                       )}
                     </div>
+
+                    {data.length < 1 ? null : (
+                      <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
+                        <div className="flex justify-between text-base font-medium text-gray-900">
+                          <p>Subtotal</p>
+                          <p>${total}</p>
+                        </div>
+                        <p className="mt-0.5 text-sm text-gray-500">
+                          Shipping and tax will be calculated at checkout.
+                        </p>
+
+                        <div className="mt-6">
+                          <Form method="post" action="/buy">
+                            <input
+                              type="hidden"
+                              name="cartData"
+                              value={JSON.stringify(data)}
+                            />
+
+                            <button
+                              type="submit"
+                              className="flex w-full items-center justify-center rounded-md border border-transparent bg-cyan-600 px-6 py-3 text-base font-medium text-white"
+                            >
+                              Checkout
+                            </button>
+                          </Form>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
