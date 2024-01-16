@@ -1,6 +1,8 @@
 import { Dialog, Transition } from "@headlessui/react";
+import { Link } from "@remix-run/react";
 import React, { Fragment } from "react";
 
+import { urlFor } from "~/lib/sanityImageUrl";
 import { useCartState } from "~/lib/useCart";
 
 const ShoppingCartModal = () => {
@@ -66,6 +68,67 @@ const ShoppingCartModal = () => {
                           </button>
                         </div>
                       </div>
+                      {data.length < 1 ? (
+                        <div className="flex w-full h-full flex-col items-center justify-center">
+                          <h1 className="text-4xl text-center">
+                            Please add items to your bag
+                          </h1>
+                          <button
+                            onClick={toggleShowCart}
+                            className="bg-cyan-600 px-4 py-2 rounded-lg text-white mt-6 text-xl"
+                          >
+                            Add Items
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="mt-8">
+                          <div>
+                            <ul className="my-6 divide-y divide-gray-200">
+                              {data.map((product, idx) => (
+                                <li key={idx} className="flex py-6">
+                                  <div className="h-24 w-24 object-cover object-center">
+                                    <img
+                                      src={urlFor(product.image[0]).url()}
+                                      alt="Product Preview"
+                                      className="h-full w-full object-cover object-center"
+                                    />
+                                  </div>
+                                  <div className="ml-4 flex flex-1 flex-col">
+                                    <div>
+                                      <div className="flex justify-between text-base font-medium text-gray-800">
+                                        <h3>
+                                          <Link
+                                            to={`/product/${product.slug.current}`}
+                                          >
+                                            {product.name}
+                                          </Link>
+                                        </h3>
+                                        <p className="mml-4">
+                                          ${product.price}
+                                        </p>
+                                      </div>
+                                    </div>
+                                    <div className="flex flex-1 items-end justify-between text-sm">
+                                      <p className="text-gray-500">
+                                        Quantity: {product.quantity}
+                                      </p>
+                                      <div className="flex">
+                                        <button
+                                          type="button"
+                                          className="font-medium text-cyan-600 hover:text-cyan-500"
+                                          onClick={() => removeItem(product)}
+                                        >
+                                          Remove
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </Dialog.Panel>
