@@ -16,7 +16,6 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.18",
     "@remix-run/css-bundle": "^2.4.1",
     "@remix-run/node": "^2.4.1",
     "@remix-run/react": "^2.4.1",
@@ -30,6 +29,7 @@
     "zustand": "^4.4.7"
   },
   "devDependencies": {
+    "@headlessui/react": "^1.7.18",
     "@remix-run/dev": "^2.4.1",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@types/react": "^18.2.20",
