@@ -1,6 +1,7 @@
 import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import { Link, json, useLoaderData } from "@remix-run/react";
 
+import { Product } from "~/lib/interface";
 import { client } from "~/lib/sanity";
 
 export const meta: MetaFunction = () => {
@@ -9,6 +10,10 @@ export const meta: MetaFunction = () => {
     { name: "description", content: "Welcome to your number 1 online shop!" },
   ];
 };
+
+interface IAppProps {
+  products: Product[];
+}
 
 // eslint-disable-next-line no-empty-pattern
 export async function loader({}: LoaderFunctionArgs) {
@@ -25,7 +30,7 @@ export async function loader({}: LoaderFunctionArgs) {
 }
 
 export default function Index() {
-  const { products } = useLoaderData<typeof loader>();
+  const { products } = useLoaderData<typeof loader>() as IAppProps;
 
   return (
     <>
@@ -63,7 +68,25 @@ export default function Index() {
       <section id="products">
         <div className="py-24 sm:py-32 lg:pt-32">
           <div className="mt-6 grid gri-col-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
-            Something goes here
+            {products.map((product) => (
+              <Link
+                to={`/product/$product.slug.current`}
+                key={product.name}
+                className="group relative"
+              >
+                <div className="w-full h-56 rounded-md overflow-hidden transition duration-300 group-hover:opacity-75 lg:h-72 xl:h-80">
+                  <img
+                    src={product.imageUrl}
+                    alt="Product preview"
+                    className="w-full h-full object-center object-contain"
+                  />
+                </div>
+                <h3 className="mt-4 text-sm text-gray-700">{product.name}</h3>
+                <p className="mt-1 text-sm font-bold text-gray-900">
+                  ${product.price}
+                </p>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
