@@ -1,4 +1,6 @@
-import { ActionFunctionArgs, json } from "@remix-run/node";
+import { ActionFunctionArgs, json, redirect } from "@remix-run/node";
+
+import { getDomainUrl, getStripeSession } from "~/lib/stripe.server";
 
 export async function action({ request }: ActionFunctionArgs) {
   if (request.method !== "post") {
@@ -9,4 +11,11 @@ export async function action({ request }: ActionFunctionArgs) {
   const values = Object.fromEntries(formData);
 
   const items = values.cartData as string;
+
+  const stripeRedirectUrl = await getStripeSession(
+    items,
+    getDomainUrl(request),
+  );
+
+  return redirect(stripeRedirectUrl);
 }
